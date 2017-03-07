@@ -276,9 +276,6 @@ class SteamLoad():
 if __name__ == "__main__":
 
 
-    # price_df=load_price_pickle()
-
-    # print(price_df[price_df["card_name"]=="269670-Daydream (Trading Card)"])
     s=SteamLoad()
-    #s.save_prices_to_csv("jahbreeze")
+
     s.load_prices_from_csv()
