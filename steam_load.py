@@ -274,8 +274,10 @@ class SteamLoad():
 
 
 if __name__ == "__main__":
+    from os.path import expanduser
+    #s=SteamLoad()
+    file = expanduser("~/data/prices.csv")
+    with open(file, 'r') as f:
+        print(f.readline())
+        print(f.readline())
 
-
-    s=SteamLoad()
-
-    s.load_prices_from_csv()

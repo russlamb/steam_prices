@@ -157,12 +157,15 @@ class PriceHistory():
 
 if __name__ == "__main__":
     import steam_load as sl
+    import urllib.parse as up
 
     s = sl.SteamLoad()
-    cardname = "269670-Daydream (Trading Card)"
+    cardname = "410590-Nuclear%20Factory"
+    cardname = up.unquote(cardname)
+    print(cardname)
     h = s.card_history_json(cardname)
 
     # p = PriceHistory(h).print_probability_and_numbers(7)
-    df = PriceHistory(h).get_price_histogram_dataframe(days=7)
+    df = PriceHistory(h).get_price_histogram_dataframe(days=14)
     df["card_name"] = cardname
     print(df)
