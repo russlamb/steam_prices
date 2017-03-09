@@ -1,12 +1,10 @@
 import steam.webauth as wa, datetime as dt, numpy as np, pandas as pd, steam
 
+
 import steam_config
 import profit_check as pc
-import postgre_connect as poc
+#import postgre_connect as poc
 
-default_u = steam_config.MyConfig().rev_robot_u
-default_p = steam_config.MyConfig().rev_robot
-default_key = steam_config.MyConfig().api_key
 
 
 def get_steam_session(u, p):
@@ -49,7 +47,7 @@ def get_inventory_list(webauthuser, username=None):
     return game_list
 
 
-def get_owned_games_json(webauthuser, api_key=default_key, username=None):
+def get_owned_games_json(webauthuser, api_key, username=None):
     """gets json of games owned by a user"""
     url = r"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/"
     s_id = steam.steamid.SteamID(webauthuser.steam_id)
@@ -71,7 +69,7 @@ def get_owned_games_json(webauthuser, api_key=default_key, username=None):
     return results
 
 
-def get_owned_game_list(webauthuser, api_key=default_key, username=None):
+def get_owned_game_list(webauthuser, api_key, username=None):
     """gets list of games owned by a user """
     game_json = get_owned_games_json(webauthuser, api_key, username)
     game_dict = game_json["response"]["games"]
@@ -162,8 +160,20 @@ def load_price_pickle(filename="all_prices.pkl"):
     print("Done")
     return read_pickl
 
+
 class SteamLoad():
-    def __init__(self, u=default_u, p=default_p, api_key=default_key):
+    def __init__(self, config_file=None):
+        
+        
+        if config_file is None:
+            stcfg = steam_config.MyConfig()
+        else:
+            stcfg=steam_config.MyConfig(config_file)
+            
+        u = stcfg.rev_robot_u
+        p = stcfg.rev_robot
+        api_key = stcfg.api_key
+
         self.u = u
         self.p = p
         self.api_key = api_key
@@ -238,8 +248,7 @@ class SteamLoad():
         all_price = pd.concat(price_list)
         return all_price
 
-    def get_apps_in_db(self):
-        df = pd.read_sql("select distinct appid")
+        
     def save_prices_to_csv(self, username=None, table="prices"):
         s = self
         inv = s.get_inventory(username)
@@ -271,13 +280,16 @@ class SteamLoad():
 
     def load_prices_from_csv(self):
         pd.read_csv("prices.csv")
+        
+    
 
 
 if __name__ == "__main__":
-    from os.path import expanduser
-    #s=SteamLoad()
-    file = expanduser("~/data/prices.csv")
-    with open(file, 'r') as f:
-        print(f.readline())
-        print(f.readline())
 
+
+    # price_df=load_price_pickle()
+
+    # print(price_df[price_df["card_name"]=="269670-Daydream (Trading Card)"])
+    s=SteamLoad()
+    #s.save_prices_to_csv("jahbreeze")
+    s.load_prices_from_csv()

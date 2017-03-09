@@ -1,6 +1,7 @@
-import pandas as pd, json, datetime as dt, numpy as np, matplotlib.pyplot as plt, math
+import pandas as pd, json, datetime as dt, numpy as np, math
 import decimal as dec
-
+import urllib.parse as up
+import steam_load as sl
 
 def parse_date(date_str):
     # trim plus
@@ -102,6 +103,12 @@ def price_histogram_data(price_history_input, date_start=None):
                 his[val] = 1
     return his
 
+def get_histogram_df( cardname, days):
+        s = sl.SteamLoad()
+        c = up.unquote(cardname)
+        h = s.card_history_json(c)
+        ph = PriceHistory(h)
+        return ph.get_price_histogram_dataframe(days=days)
 
 class PriceHistory():
     def __init__(self, price_json):
@@ -154,15 +161,13 @@ class PriceHistory():
         for i in sorted(htp):
             print("{0}: {1} - {2:0.2f}%".format(i, htp[i], gpp[i]))
 
+    
 
 if __name__ == "__main__":
-    import steam_load as sl
-    import urllib.parse as up
+    
 
     s = sl.SteamLoad()
-    cardname = "410590-Nuclear%20Factory"
-    cardname = up.unquote(cardname)
-    print(cardname)
+    cardname = "214770-%3Acluck%3A"
     h = s.card_history_json(cardname)
 
     # p = PriceHistory(h).print_probability_and_numbers(7)

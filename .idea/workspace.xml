@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1238e0-dd5a-4b51-8f19-9bea4f498596" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/postgre_connect.py" afterPath="$PROJECT_DIR$/postgre_connect.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/profit_check.py" afterPath="$PROJECT_DIR$/profit_check.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/steam_config.py" afterPath="$PROJECT_DIR$/steam_config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/steam_load.py" afterPath="$PROJECT_DIR$/steam_load.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,8 +26,8 @@
       <file leaf-file-name="steam_load.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/steam_load.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="276" column="0" lean-forward="false" selection-start-line="276" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
+            <state relative-caret-position="383">
+              <caret line="287" column="0" lean-forward="false" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
               <folding>
                 <element signature="e#0#76#0" expanded="true" />
               </folding>
@@ -68,10 +63,10 @@
       <file leaf-file-name="profit_check.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/profit_check.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="162" column="40" lean-forward="false" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
+            <state relative-caret-position="383">
+              <caret line="169" column="35" lean-forward="true" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
               <folding>
-                <element signature="e#0#86#0" expanded="true" />
+                <marker date="1488999345000" expanded="true" signature="0:59" ph="import ..." />
               </folding>
             </state>
           </provider>
@@ -531,7 +526,7 @@
         <state relative-caret-position="1530">
           <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
           <folding>
-            <element signature="e#0#86#0" expanded="true" />
+            <marker date="1488999345000" expanded="true" signature="0:59" ph="import ..." />
           </folding>
         </state>
       </provider>
@@ -574,8 +569,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/steam_load.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="276" column="0" lean-forward="false" selection-start-line="276" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
+        <state relative-caret-position="383">
+          <caret line="287" column="0" lean-forward="false" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
           <folding>
             <element signature="e#0#76#0" expanded="true" />
           </folding>
@@ -597,10 +592,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/profit_check.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="162" column="40" lean-forward="false" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
+        <state relative-caret-position="383">
+          <caret line="169" column="35" lean-forward="true" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
           <folding>
-            <element signature="e#0#86#0" expanded="true" />
+            <marker date="1488999345000" expanded="true" signature="0:59" ph="import ..." />
           </folding>
         </state>
       </provider>
