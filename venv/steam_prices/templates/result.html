@@ -1,0 +1,11 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Item Result</h1>
+  {% if form %}
+  <p>Here are the prices for {{form.item_name.data}}:</p>
+  {% endif %}
+  
+  <p>Thanks for asking, {{ user.nickname }}! </p>
+{% endblock %}
