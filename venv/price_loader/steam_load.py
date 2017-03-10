@@ -166,8 +166,10 @@ class SteamLoad():
         
         
         if config_file is None:
+            print("no steam config file")
             stcfg = steam_config.MyConfig()
         else:
+            print("reading file {}".format(config_file))
             stcfg=steam_config.MyConfig(config_file)
             
         u = stcfg.rev_robot_u
