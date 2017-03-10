@@ -176,14 +176,14 @@ class PriceChecker():
         parsed_name = up.unquote(item_name)
         
         if not self.loaded_item == parsed_name:
-            print("reloaded  {}".format(dt.datetime.now()))
+            #print("reloaded  {}".format(dt.datetime.now()))
             s = self.steam_load
             c = parsed_name
             h = s.card_history_json(c)
             ph = PriceHistory(h)
             self.loaded_prices = ph
             self.loaded_item = parsed_name
-        print("prices for {}".format(self.loaded_item))
+        #print("prices for {}".format(self.loaded_item))
         return self.loaded_prices.get_price_histogram_dataframe(days=days)
         
     

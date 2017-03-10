@@ -8,6 +8,8 @@
       <p>
           Enter the steam item name:<br>
           {{ form.item_name(size=100) }}<br>
+          Number of days data:<br>
+          {{ form.days() }}<br>
           {% for error in form.item_name.errors %}
             <span style="color: red;">[{{ error }}]</span>
           {% endfor %}<br>

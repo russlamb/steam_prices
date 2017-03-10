@@ -3,9 +3,12 @@
 
 {% block content %}
   <h1>Item Result</h1>
-  {% if form %}
-  <p>Here are the prices for {{form.item_name.data}}:</p>
+  {% if result_data.parsed_item %}
+  <p>Here are the prices for {{result_data.parsed_item}}:</p>
   {% endif %}
   
-  <p>Thanks for asking, {{ user.nickname }}! </p>
+  {% if result_data.output_list %}
+  {{result_data.output_list|safe }}
+  {% endif %}
+  <p>Thanks for asking, {{ result_data.user.nickname }}! </p>
 {% endblock %}
