@@ -1,1 +1,2 @@
-import price_loader.profit_check
+#import price_loader.profit_check
+from price_loader.profit_check import PriceChecker

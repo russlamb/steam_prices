@@ -3,14 +3,25 @@ import configparser as cfg_parser, getpass, os
 
 
 class MyConfig():
-    def __init__(self, filepath="../Private/config.ini"):
+    def __init__(self, filepath="../../Private/config.ini"):
+        
         
         if not os.path.exists(filepath):
-            print("file path {} not found".format(os.path.abspath(filepath)))
-            self.api_key=getpass.getpass("STEAM API KEY:")
-            self.rev_robot_u=getpass.getpass("STEAM USER:")
-            self.rev_robot=getpass.getpass("STEAM PASS:")
-            self.db_connstr =getpass.getpass("DB CONN STR:")
+            key_var = os.getenv("API_KEY")
+            user_var = os.getenv("STEAM_USER")
+            pass_var = os.getenv("STEAM_PASS")
+            if key_var is not None and user_var is not None and \
+                pass_var is not None:
+                print("environment vars found")
+                self.api_key = key_var
+                self.rev_robot_u = user_var
+                self.rev_robot = pass_var
+            else:
+                print("file path {} not found".format(os.path.abspath(filepath)))
+                self.api_key=getpass.getpass("STEAM API KEY:")
+                self.rev_robot_u=getpass.getpass("STEAM USER:")
+                self.rev_robot=getpass.getpass("STEAM PASS:")
+                self.db_connstr =getpass.getpass("DB CONN STR:")
         else:
             print("steam_config path {}".format(os.path.abspath(filepath)))
             config = cfg_parser.ConfigParser(interpolation=None)

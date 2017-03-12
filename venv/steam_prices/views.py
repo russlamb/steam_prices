@@ -25,8 +25,17 @@ def item_check():
             
         days_list=[]
         for i in default_days:
-            days_list.append("".join(["Price over last {} days<br>".format(i),my_price_checker.get_item_history(form.item_name.data,days=i ).to_html()]))
+            days_list.append(
+                "".join(
+                    [
+                        "Price over last {} days<br>".format(i),
+                        my_price_checker.get_item_history(form.item_name.data,days=i).to_html().replace('class="dataframe"','class="hor-minimalist-b"')
+                    ]
+                )
+            )
         
+
+
         output_list  = "<br>".join(days_list)
         
         result_data ={

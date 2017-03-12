@@ -21,6 +21,12 @@ def generate_trades_dummy(price, number_of_trades):
 def parse_prices(price_dict_raw, how_gen_trade="mean"):
     """prices are of form: [timestamp, price, number of trades].  Parse into [timestamp,price] x numer of trades"""
     d_prices = dict()
+    
+    if not price_dict_raw["prices"]:
+        #add a dummy price
+        d_prices[dt.datetime.now()]=0.0
+        return d_prices
+        
     for row in price_dict_raw["prices"]:
 
         price_date = parse_date(row[0])
@@ -117,9 +123,6 @@ class PriceHistory():
         self.price_dict = price_json
         self.price_history = parse_prices(self.price_dict)
 
-    
-    
-
     def get_histogram(self, start_date=None):
         return price_histogram_data(self.price_history, start_date)
 
@@ -180,6 +183,7 @@ class PriceChecker():
             s = self.steam_load
             c = parsed_name
             h = s.card_history_json(c)
+            
             ph = PriceHistory(h)
             self.loaded_prices = ph
             self.loaded_item = parsed_name
