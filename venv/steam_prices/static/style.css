@@ -8,10 +8,9 @@
     margin: 20px;
 }
 
-.hor-minimalist-b {
+table.hor-minimalist-b {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 12px;
-    background: #fff;
     width: 480px;
     border-collapse: collapse;
     text-align: right;
@@ -24,8 +23,11 @@
     font-style: normal;
     font-weight: 400;
     
-    color: #333;
+
+    
 }
+
+/*
 table, tbody, td, tfoot, th, thead, tr {
     text-align: right;
     vertical-align: baseline;
@@ -43,3 +45,5 @@ table, tbody, td, tfoot, th, thead, tr {
     border-spacing: 2px;
     border-color: grey;
 }
+
+*/
