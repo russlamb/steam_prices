@@ -22,32 +22,38 @@ def parse_prices(price_dict_raw, how_gen_trade="mean"):
     """prices are of form: [timestamp, price, number of trades].  Parse into [timestamp,price] x numer of trades"""
     d_prices = dict()
     
-    if not price_dict_raw["prices"]:
+    #print(type(price_dict_raw["prices"]))
+    
+    if type(price_dict_raw["prices"]) is list:
+            
+        for row in price_dict_raw["prices"]:
+    
+            price_date = parse_date(row[0])
+            price = round(float(row[1]), 2)
+    
+            number_of_trades = int(row[2])
+    
+            # if how_gen_trade=="mean":
+            # generate possible trade values based on mean
+            #    generated_trades = generate_trades_mean(price, number_of_trades)
+            # else:
+            #    generated_trades = generate_trades_dummy(price, number_of_trades)
+    
+            generated_trades = generate_trades_mean(price, number_of_trades)
+    
+            # add rows to the dictionary for each time a trade occurred
+            for i in range(0, len(generated_trades)):
+                # add a microsecond to each date to differentiate each trade
+                micro_t = dt.timedelta(microseconds=1 * i)
+                price_key = price_date + micro_t
+                d_prices[price_key] = generated_trades[i]
+
+    else:
         #add a dummy price
-        d_prices[dt.datetime.now()]=0.0
-        return d_prices
+        #d_prices[dt.datetime.now()]=0.0
+        #return d_prices
+        return None
         
-    for row in price_dict_raw["prices"]:
-
-        price_date = parse_date(row[0])
-        price = round(float(row[1]), 2)
-
-        number_of_trades = int(row[2])
-
-        # if how_gen_trade=="mean":
-        # generate possible trade values based on mean
-        #    generated_trades = generate_trades_mean(price, number_of_trades)
-        # else:
-        #    generated_trades = generate_trades_dummy(price, number_of_trades)
-
-        generated_trades = generate_trades_mean(price, number_of_trades)
-
-        # add rows to the dictionary for each time a trade occurred
-        for i in range(0, len(generated_trades)):
-            # add a microsecond to each date to differentiate each trade
-            micro_t = dt.timedelta(microseconds=1 * i)
-            price_key = price_date + micro_t
-            d_prices[price_key] = generated_trades[i]
 
     return d_prices
 
@@ -98,6 +104,9 @@ def price_histogram_data(price_history_input, date_start=None):
     date_filter = date_start
     if date_filter is None:
         date_filter = dt.datetime.min
+        
+    if price_history_input is None:
+        return None
 
     for i in sorted(price_history_input.keys()):
         val = price_history_input[i]
@@ -153,6 +162,9 @@ class PriceHistory():
     def get_price_histogram_dataframe(self, end_date=dt.datetime.now(), days=14):
         prior_period = dt.timedelta(days=days)
         price_dist = self.get_histogram_time_period(end_date=end_date, prior_period=prior_period)
+        if price_dist is None:
+            return pd.DataFrame()
+            
         df = pd.DataFrame.from_dict(price_dist, orient="index")
         df.columns = ["trades"]
         total_vals = sum([i for i in price_dist.values()])
